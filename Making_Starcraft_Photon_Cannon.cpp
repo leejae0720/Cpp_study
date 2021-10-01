@@ -40,7 +40,10 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {         // const 함수�
     shield = pc.shield;
     coord_x = pc.coord_x;
     coord_y = pc.coord_y;
-    damage = pc.damage;    
+    damage = pc.damage;
+
+    name = new char[strlen(pc.name)+1];
+    strcpy(name, pc.name);    
 }
 
 Photon_Cannon::Photon_Cannon(int x, int y, const char *cannon_name) {
