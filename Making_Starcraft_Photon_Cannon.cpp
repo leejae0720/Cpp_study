@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 
+//포토 캐논 클래스 만듬
 class Photon_Cannon {
     private:
         int hp, shield;             // 포토캐논의 hp와 shield 지정
@@ -45,7 +46,7 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {         // const 함수�
     name = new char[strlen(pc.name)+1];
     strcpy(name, pc.name);    
 }
-
+// 이름을 갖는 포토캐논 생성자
 Photon_Cannon::Photon_Cannon(int x, int y, const char *cannon_name) {
     hp = shield = 100;
     coord_x = x;
