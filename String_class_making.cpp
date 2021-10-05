@@ -92,11 +92,13 @@ string::~string() {
 
 // main 함수 호출
 int main() {
-    string('a', 5);         // 문자 a가 5개 있는 문자열 호출(기본 생성자 호출)
+    string('a', 5);             // 문자 a가 5개 있는 문자열 호출(기본 생성자 호출)
     
-    string str1("leejaehong");
-    string str2(str1);
-  
+    string str1("leejaehong");  // 문자열 입력
+    string str2(str1);          // 복사 생성자 호출
+    string str3(str1);          // 복사 생성자 호출
+    //str2.add_string(str1);      // str2 문자열에 str1 이어 붙이기.
+    //str2.print_string();
     /*
     string str1("leejaehong");     // 문자열 입력.
     string str2 = str1;            // 복사 생성자 호출.
