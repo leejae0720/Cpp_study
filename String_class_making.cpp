@@ -54,7 +54,7 @@ string::string(const string &s) {
     std::cout << str << std::endl;
 }
 
-// str 뒤에 s를 붙이는 생성자 호출
+// str 뒤에 s를 붙이는 생성자 호출 (복사 생성자)
 void string::add_string(const string &s) {
     len=len+s.len;
     char *temp = new char[len+1];
@@ -66,7 +66,7 @@ void string::add_string(const string &s) {
     delete[] temp;
 }
 
-// str에 s를 복사하는 생성자 호출
+// str에 s를 복사하는 생성자 호출 (복사 생성자)
 void string::copy_string(const string &s) {
     delete[] str;
     len = s.len;
@@ -86,7 +86,7 @@ void string::print_string() {
 string::~string() {
     if(str != 0) {
         delete[] str;
-        std::cout << "making delete" << std::endl;
+        std::cout << "making destructor" << std::endl;
     }
 }
 
@@ -94,18 +94,12 @@ string::~string() {
 int main() {
     string('a', 5);             // 문자 a가 5개 있는 문자열 호출(기본 생성자 호출)
     
-    string str1("leejaehong");  // 문자열 입력
+    string str1("jaehong");  // 문자열 입력
     string str2(str1);          // 복사 생성자 호출
-    string str3(str1);          // 복사 생성자 호출
-    //str2.add_string(str1);      // str2 문자열에 str1 이어 붙이기.
-    //str2.print_string();
-    /*
-    string str1("leejaehong");     // 문자열 입력.
-    string str2 = str1;            // 복사 생성자 호출.
-    str2.add_string(str1);
-    str2.copy_string(str2);
+    str2.add_string(str1);      // str2 문자열에 str1 이어 붙이기 (함수 안에 new, delete 있음)
+    str2.copy_string(str2);     // str2 문자열에 str2을 복사      (함수 안에 new, delete 있음)
     str1.print_string();
     str2.print_string();
-    */
+    
     return 0;
 }
