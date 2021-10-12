@@ -3,6 +3,7 @@
 class Marine {
     private:
         static int total_marine_num;                // 프로그램이 종료될때 소멸 되는 static 변수로 지정
+                                                    // 전역 변수 같지만, 클래스 하나에만 종속되는 변수
 
         int hp;
         int coord_x, coord_y;
@@ -17,11 +18,16 @@ class Marine {
         int attack();
         void be_attacked(int damage_earn);
         void move(int x, int y);
-
+        static void show_total_marine();            // static 함수 || 객체가 없어도 그냥 클래스 자체에서 호출 가능.
+                                                    // 어떤 객체에 종속되어 있는게 아닌, 클래스에 종속되어 있는것.
         void show_state();
 };
 
 int Marine::total_marine_num = 0;                   // class내 static 변수 초기화
+
+void Marine::show_total_marine() {
+  std::cout << "Total Marine number: " << total_marine_num << std::endl;
+}
 
 Marine::Marine() : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
     total_marine_num++;
@@ -42,7 +48,7 @@ Marine::Marine(int x, int y, int default_damage) \
         is_dead(false) {total_marine_num++;}
 
 void Marine::show_state() {
-    std::cout << "*** Marine ***" << std::endl;
+    std::cout << "\n" << "*** Marine ***" << std::endl;
     std::cout << "hp: " << hp << std::endl;
     std::cout << "location: (" << coord_x << "," << coord_y << ")" << std::endl;
     std::cout << "is_dead: " << is_dead << std::endl;
@@ -59,7 +65,7 @@ void Marine::be_attacked(int damage_earn) {
 
 void create_marine() {
   Marine marine3(10, 10, 4);
-  marine3.show_state();
+  Marine::show_total_marine();
 }
 
 int Marine::attack() {
@@ -68,16 +74,18 @@ int Marine::attack() {
 
 int main() {
     Marine Marine1(3,4, 10);
-    Marine1.show_state();
+    Marine::show_total_marine();
 
     Marine Marine2(4,3, 5);
-    Marine2.show_state();    
+    Marine::show_total_marine();    
 
     create_marine();
 
     std::cout << "\n" << "marine1 attck to marine2" << "\n" << std::endl;
 
     Marine2.be_attacked(Marine1.attack());
+    
+    Marine1.show_state();
     Marine2.show_state();
     
 }
