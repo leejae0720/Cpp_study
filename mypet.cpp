@@ -1,6 +1,6 @@
 #include <iostream>
 
-
+// 구조체 생성
 typedef struct Animal {
     char name[30];
     int age;
@@ -11,15 +11,16 @@ typedef struct Animal {
 } Animal;
 
 void create_animal(Animal *animal){
-    std::cout << "what you are animal name?: " << std::endl;
+    std::cout << "what you are animal name?: ";
     std::cin >> animal->name;
 
-    std::cout << "what you are animal age?: " << std::endl;
+    std::cout << "what you are animal age?: ";
     std::cin >> animal->age;
 
     animal->health = 100;
     animal->food = 100;
     animal->clean = 100;
+    
 }
 
 void play(Animal *animal) {
@@ -35,7 +36,7 @@ void one_day_pass(Animal *animal) {
 }
 
 void show_stat(Animal *animal) {
-    std::cout << animal->name << "is stat" << std::endl;
+    std::cout << animal->name << " is stat" << std::endl;
     std::cout << "health : " << animal->health << std::endl;
     std::cout << "food : " << animal->food << std::endl;
     std::cout << "clean : " << animal->clean << std::endl;
@@ -60,20 +61,19 @@ int main() {
             create_animal(list[animal_num]);
 
             animal_num++;
-        break;
+            break;
         case 2:
             std::cout << "who play? : ";
             std::cin >> play_with;
 
-        if (play_with < animal_num) play(list[play_with]);
-
-        break;
+            if (play_with < animal_num) play(list[play_with]);
+            break;
 
         case 3:
             std::cout << "what your see? : ";
             std::cin >> play_with;
             if (play_with < animal_num) show_stat(list[play_with]);
-        break;
+            break;
     }
 
         for (int i = 0; i != animal_num; i++) {
@@ -83,5 +83,4 @@ int main() {
     for (int i = 0; i != animal_num; i++) {
     delete list[i];
   }
-
 }
